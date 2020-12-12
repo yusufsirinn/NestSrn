@@ -14,3 +14,4 @@ export class UserModel {
     roles: RoleModel[];
     groups: GroupModel[];
 }
+
