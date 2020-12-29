@@ -4,6 +4,8 @@ import { Model } from 'mongoose';
 import { UserLogin } from 'src/tools/dtos/user.dto';
 import { IUser } from 'src/user/user.interface';
 import { UserService } from 'src/user/user.service';
+import * as jwt from 'jsonwebtoken';
+import environment from 'src/tools/environment/environment';
 
 @Injectable()
 export class LoginService {
@@ -33,7 +35,8 @@ export class LoginService {
 
                 )
                 if (checkPwd) {
-                    return { success: true, value: existUser }
+                    const token = jwt.sign({ user: existUser }, environment.tokenText);
+                    return { success: true, value: token }
                 } else {
                     return { success: false, response: '* user password is incorrent!' }
                 }
