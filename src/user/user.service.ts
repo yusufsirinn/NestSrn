@@ -21,7 +21,6 @@ export class UserService {
     }
 
     async create(user: UserCreateDto): Promise<UserModel> {
-        user.password = await this.convertToHash(user.password);
         const audit = new AuditModel();
         audit.active = true;
         audit.createdBy = "Admin";
