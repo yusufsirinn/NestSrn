@@ -8,6 +8,9 @@ import { AuditModel } from "src/tools/models/audit.model";
 
 
 const result: UserModel[] = [];
+const bcrypt = require('bcrypt');
+const saltRounds = 10;
+const hashText = 'hashtext';
 
 @Injectable()
 export class UserService {
@@ -18,6 +21,7 @@ export class UserService {
     }
 
     async create(user: UserCreateDto): Promise<UserModel> {
+        user.password = await this.convertToHash(user.password);
         const audit = new AuditModel();
         audit.active = true;
         audit.createdBy = "Admin";
@@ -42,5 +46,18 @@ export class UserService {
         let newModel = this.userMongo.findOne({ _id: id }).exec();
         newModel = { ...newModel, ...user };
         return await this.userMongo.findByIdAndUpdate(id, newModel, { new: true }).exec();
+    }
+
+    async convertToHash(value: string) {
+        let hashPwd;
+        await bcrypt.hash(hashText + value, saltRounds).then(hash => {
+            hashPwd = hash;
+        });
+        return await hashPwd;
+    }
+
+    async compareHashes(password, hashed) {
+        const hash = await bcrypt.compareSync(hashText + password, hashed);
+        return await hash;
     }
 }
