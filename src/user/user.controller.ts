@@ -1,6 +1,6 @@
 import { Body, Controller, Delete, Get, Param, Post, Put } from "@nestjs/common";
-import { UserCreateDto, UserUpdate } from "tools/dtos/user.dto";
-import { UserModel } from "tools/models/user.model";
+import { UserCreateDto, UserUpdate } from "src/tools/dtos/user.dto";
+import { UserModel } from "src/tools/models/user.model";
 import { UserService } from "./user.service";
 
 

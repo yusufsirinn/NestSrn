@@ -1,6 +1,6 @@
 import { IsEmail, IsNotEmpty, Length } from "class-validator";
-import { GroupModel } from "tools/models/group.model";
-import { RoleModel } from "tools/models/role.model";
+import { GroupModel } from "src/tools/models/group.model";
+import { RoleModel } from "src/tools/models/role.model";
 
 export class UserCreateDto {
     @IsNotEmpty()
