@@ -1,4 +1,4 @@
-import { AuditModel } from "tools/models/audit.model";
+import { AuditModel } from "src/tools/models/audit.model";
 
 export class ActivityTypeDto {
     name: string;

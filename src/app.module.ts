@@ -3,7 +3,7 @@ import { MongooseModule } from '@nestjs/mongoose';
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
 import { UserModule } from './user/user.module';
-import e from 'tools/environment/environment';
+import e from 'src/tools/environment/environment';
 
 @Module({
   imports: [UserModule, MongooseModule.forRoot(e.mongoUrl)],
